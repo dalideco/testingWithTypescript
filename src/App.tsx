@@ -1,5 +1,6 @@
 import React,{FC,LegacyRef,useRef, useState} from 'react';
 import Hello from './components/Hello'
+import TransitionPage from './Pages/TransitionPage'
 
 import './App.css';
 
@@ -11,10 +12,11 @@ function App (): JSX.Element {
   return (
     <div className="App">
       <header className="App-header">
-        <Hello>{hello}</Hello>
+        {/* <Hello>{hello}</Hello>
         <button onClick={()=>{setHello("hello no world")}}>
           click to not say hello
-        </button>
+        </button> */}
+        <TransitionPage/>
       </header>
     </div>
   );
