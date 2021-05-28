@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled, { StyledComponent } from 'styled-components'
 import { BrowserRouter as Router, NavLink , Switch, Route,useLocation } from "react-router-dom";
 import { useTransition,animated } from "react-spring";
 import { AnimatePresence, motion } from "framer-motion";
@@ -46,29 +46,36 @@ const StyledPage = styled.div`
 
 
 //this is the little component
-const LittleComponentDiv= styled(motion.div)`
-    background:white;
+
+
+const transitionVariants= {
+    in:{scaleX:1},
+    out:{scaleX:0}
+}
+
+interface little {
+    children?: React.ReactNode
+    background?:String
+}
+
+const LittleComponent:React.FC<little> = ({children,background})=>{
+
+    const LittleComponentDiv= styled(motion.div)`
+    background:${props=> props.theme.background};
     border: 1px solid black;
     width: 500px;
     margin: 100px auto;
     padding: 50px 0;
-`
-
-// const transitionVariants= {
-//     in:{opacity:1},
-//     out:{opacity:0}
-// }
-
-const LittleComponent:React.FC<{children?:React.ReactNode}> = ({children})=>{
-
-
+    `
 
     return (
         <LittleComponentDiv
-            initial={{scaleX:0}}
-            animate={{scaleX:1}}
-            exit={{scaleX:0}}
-            
+            initial="out"
+            animate="in"
+            exit="out"
+            variants={transitionVariants}
+            transition={{duration:0.3}}
+            theme={{background:background}}
         >
             {children}
         </LittleComponentDiv>
@@ -88,13 +95,13 @@ const MyRouter:React.FC= ()=>{
             <AnimatePresence exitBeforeEnter={true}>
                 <Switch location={location} key={location.pathname}>
                     <Route exact path="/">
-                        <LittleComponent>this is the home </LittleComponent>
+                        <LittleComponent background="red">this is the home </LittleComponent>
                     </Route>
                     <Route exact path="/hello">
-                        <LittleComponent>This is the hello part</LittleComponent>
+                        <LittleComponent background="blue">This is the hello part</LittleComponent>
                     </Route>
                     <Route exact path="/deco">
-                        <LittleComponent>This is DALIDECOCK</LittleComponent>
+                        <LittleComponent background="green">This is DALIDECOCK</LittleComponent>
                     </Route>
                 </Switch>
             </AnimatePresence>
