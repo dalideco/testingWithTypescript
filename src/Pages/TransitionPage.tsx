@@ -83,8 +83,9 @@ const MyRouter:React.FC= ()=>{
 
         
         <div style={{flex:'1',overflow:"hidden", position:"relative"}}>
-            <AnimatePresence exitBeforeEnter={false}>
+            
             <StyledPage  >
+            <AnimatePresence exitBeforeEnter={true}>
                 <Switch location={location} key={location.pathname}>
                     <Route exact path="/">
                         <LittleComponent>this is the home </LittleComponent>
@@ -96,8 +97,9 @@ const MyRouter:React.FC= ()=>{
                         <LittleComponent>This is DALIDECOCK</LittleComponent>
                     </Route>
                 </Switch>
-            </StyledPage>
             </AnimatePresence>
+            </StyledPage>
+            
             
             
         </div>
