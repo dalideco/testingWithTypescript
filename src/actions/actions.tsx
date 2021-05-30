@@ -15,4 +15,11 @@ const decrement = (nbr:number)=>{
     }
 }
 
-export {increment,decrement}
+const add = (node:string)=>{
+    return {
+        type: "ADD",
+        node
+    }
+}
+
+export {increment,decrement,add}

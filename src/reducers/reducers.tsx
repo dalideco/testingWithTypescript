@@ -8,8 +8,11 @@ const counter = (state=0, action:{type:String,diff:number}) =>{
     }
 }
 
-const list = (state =[] , action:{type:String,node: String})=>{
-    
+const list = (state =[] , action:{type:String,node: string})=>{
+    switch(action.type){
+        case "ADD":{return [...state, action.node]}
+        default: {return state}
+    }
 }
 
-export {counter};
+export {counter,list};
